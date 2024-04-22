@@ -57,7 +57,7 @@ module "alb" {
   security_groups = [module.blog_sg.security_group_id]
 
   listeners = {
-    http = {
+    ex-http = {
       port     = 80
       protocol = "HTTP"
     }
