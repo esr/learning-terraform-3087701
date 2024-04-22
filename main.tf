@@ -34,7 +34,7 @@ module "blog_vpc" {
 
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "blog" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
 
@@ -71,7 +71,7 @@ module "alb" {
       target_type      = "instance"
       targets          = {
         my_target = {
-          target_id = aws_instance.web.id
+          target_id = aws_instance.blog.id
           port = 80
         }
       }
