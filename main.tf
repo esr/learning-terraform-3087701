@@ -63,11 +63,24 @@ module "blog_alb" {
     default = {
       port     = 80
       protocol = "HTTP"
-
+      forward =  {
+        target_group_key = "instance"
+      }
     }
   }
 
+  target_groups = {
+    instance = {
+      name_prefix      = "blog-"
+      protocol         = "HTTP"
+      port             = 80
+      target_type      = "instance"
 
+      protocol_version = "HTTP1"
+
+      port = 80
+    }
+  }
 
   tags = {
     Environment = "dev"
